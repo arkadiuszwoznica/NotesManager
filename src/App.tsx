@@ -1,6 +1,7 @@
 import "bootstrap/dist/css/bootstrap.min.css"
 import './App.css'
 import NewNote from "./pages/NewNote"
+import NotesList from"./pages/NotesList"
 import { Container } from "react-bootstrap"
 import { Routes, Route, Navigate } from "react-router-dom"
 import useLocalStorage from "./hooks/useLocalStorage"
@@ -60,7 +61,7 @@ function App() {
   return (
     <Container className="mb-4">
       <Routes>
-        <Route path="/" element={<h1>Homepage</h1>} />
+        <Route path="/" element={<NotesList availableTags={tags}/>} />
         <Route path="/new" element={<NewNote onSubmit={onCreateNote} 
                                             onAddTag={addTag} 
                                             availableTags={tags}/>} />
