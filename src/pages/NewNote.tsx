@@ -1,6 +1,6 @@
-import { NoteForm } from "../components/NoteForm"
+import NoteForm  from "../components/NoteForm"
 
-export function NewNote() {
+const NewNote = () => {
     return (
         <>
             <h1 className="mb-4">New note</h1>
@@ -8,3 +8,5 @@ export function NewNote() {
         </>
     )
 }
+
+export default NewNote

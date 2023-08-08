@@ -1,9 +1,24 @@
 import "bootstrap/dist/css/bootstrap.min.css"
 import './App.css'
-import {NewNote} from "./pages/NewNote"
+import NewNote from "./pages/NewNote"
 import { Container } from "react-bootstrap"
 import { Routes, Route, Navigate } from "react-router-dom"
 
+
+export type Note = {
+  id: string
+} & NoteData
+
+export type NoteData ={
+  title: string
+  text: string
+  tags: Tag[]
+}
+
+export type Tag = {
+  id: string
+  label: string
+}
 
 function App() {
 
