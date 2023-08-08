@@ -44,7 +44,7 @@ function App() {
     })
   }, [notes, tags])
 
-  function onCreateNote({tags, ...data}: NoteData) {
+  const onCreateNote = ({tags, ...data}: NoteData) => {
     setNotes(prevNotes => {
       return [
         ...prevNotes, 
@@ -53,11 +53,17 @@ function App() {
     })
   }
 
+  const addTag = (tag: Tag) => {
+    setTags(prev => [...prev, tag])
+  }
+
   return (
     <Container className="mb-4">
       <Routes>
         <Route path="/" element={<h1>Homepage</h1>} />
-        <Route path="/new" element={<NewNote onSubmit={onCreateNote}/>} />
+        <Route path="/new" element={<NewNote onSubmit={onCreateNote} 
+                                            onAddTag={addTag} 
+                                            availableTags={tags}/>} />
         <Route path="/:id">
           <Route index element={<h1>Show</h1>}/>
           <Route path="edit" element={<h1>Edit</h1>}/>
