@@ -2,12 +2,12 @@ import { useOutletContext } from "react-router-dom"
 import {Note} from "../App"
 import {Button, Stack, Row, Col, Badge} from "react-bootstrap"
 import {Link} from "react-router-dom"
-import React from "react"
 import { ReactMarkdown } from "react-markdown/lib/react-markdown"
+import {useNote} from "../hooks/useNote"
 
-const useNote = () => {
-    return useOutletContext<Note>()
-}
+// const useNote = () => {
+//     return useOutletContext<Note>()
+// }
 
 
 const NoteShowpage = () => {
