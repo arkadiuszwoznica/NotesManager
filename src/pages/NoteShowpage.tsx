@@ -1,17 +1,15 @@
-import { useOutletContext } from "react-router-dom"
-import {Note} from "../App"
 import {Button, Stack, Row, Col, Badge} from "react-bootstrap"
-import {Link} from "react-router-dom"
+import {Link, useNavigate} from "react-router-dom"
 import { ReactMarkdown } from "react-markdown/lib/react-markdown"
 import {useNote} from "../hooks/useNote"
 
-// const useNote = () => {
-//     return useOutletContext<Note>()
-// }
+type NoteProps = {
+    onDelete: (id: string) => void
+}
 
-
-const NoteShowpage = () => {
+const NoteShowpage = ({onDelete}: NoteProps) => {
     const note = useNote()
+    const navigate = useNavigate()
 
     return <>
         <Row className="align-items-center mb-4">
@@ -29,7 +27,10 @@ const NoteShowpage = () => {
                     <Link to={`/${note.id}/edit`}>
                         <Button variant="primary">Edit</Button>
                     </Link> 
-                    <Button variant="outline-danger">Delete</Button>
+                    <Button variant="outline-danger" onClick={() => {
+                        onDelete(note.id) 
+                        navigate("/")
+                        }}>Delete</Button>
                     <Link to="/">
                         <Button variant="outline-secondary">Home</Button>
                     </Link> 
