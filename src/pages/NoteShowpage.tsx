@@ -1,7 +1,9 @@
 import {Button, Stack, Row, Col, Badge} from "react-bootstrap"
+import {useState } from "react"
 import {Link, useNavigate} from "react-router-dom"
 import { ReactMarkdown } from "react-markdown/lib/react-markdown"
 import {useNote} from "../hooks/useNote"
+import DeleteNoteModal from "../components/DeleteNoteModal"
 
 type NoteProps = {
     onDelete: (id: string) => void
@@ -10,6 +12,8 @@ type NoteProps = {
 const NoteShowpage = ({onDelete}: NoteProps) => {
     const note = useNote()
     const navigate = useNavigate()
+    const [deleteNoteModalIsOpen, setDeleteNoteModalIsOpen] = useState(false)
+
 
     return <>
         <Row className="align-items-center mb-4">
@@ -27,10 +31,8 @@ const NoteShowpage = ({onDelete}: NoteProps) => {
                     <Link to={`/${note.id}/edit`}>
                         <Button variant="primary">Edit</Button>
                     </Link> 
-                    <Button variant="outline-danger" onClick={() => {
-                        onDelete(note.id) 
-                        navigate("/")
-                        }}>Delete</Button>
+                    <Button variant="outline-danger" onClick={() => setDeleteNoteModalIsOpen(true)
+                        }>Delete</Button>
                     <Link to="/">
                         <Button variant="outline-secondary">Home</Button>
                     </Link> 
@@ -40,6 +42,12 @@ const NoteShowpage = ({onDelete}: NoteProps) => {
         <ReactMarkdown>
             {note.text}
         </ReactMarkdown>
+        <DeleteNoteModal show={deleteNoteModalIsOpen}
+                        handleClose={() => setDeleteNoteModalIsOpen(false)}
+                        deleteNote={() => {
+                            onDelete(note.id) 
+                            navigate("/")}}
+                        note={note}/>
     </>
 }
 

@@ -25,7 +25,8 @@ const EditTagsModal = ({_availableTags, handleClose, show, updateTag, deleteTag 
                         </Col>
                         <Col xs="auto">
                             <Button variant="outline-danger"
-                                    onClick={() => deleteTag(tag.id)}>&times;</Button>
+                                    onClick={() => deleteTag(tag.id)}>&times;
+                            </Button>
                         </Col>
                     </Row>
                 ))}
